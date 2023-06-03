@@ -12,7 +12,6 @@ import java.util.Optional;
 public interface RecordRepository extends JpaRepository<RecordTodo, Integer> {
 
     Optional<RecordTodo> findById(Long id);
-
     Optional<List<RecordTodo>> findByName(String name);
     Optional<List<RecordTodo>> findByStatus(RecordStatus status);
 

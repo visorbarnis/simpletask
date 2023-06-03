@@ -32,7 +32,6 @@ public class RecordServiceImpl implements RecordsService {
 
     @Override
     public List<RecordDto> findAllDtos() {
-
         return recordRepository.findAll()
                 .stream().map(RecordDto::new
                 ).collect(Collectors.toList());
@@ -112,7 +111,6 @@ public class RecordServiceImpl implements RecordsService {
         }
         return false;
     }
-
 
     @Override
     @Transactional
