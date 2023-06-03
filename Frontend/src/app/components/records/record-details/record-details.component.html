@@ -1,0 +1,128 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentRecordItem.id">
+    <h4>Record detail</h4>
+    <div>
+      <label><strong>Record number:</strong></label> {{ currentRecordItem.id }}
+    </div>
+    <div>
+      <label><strong>Name:</strong></label>
+      {{ currentRecordItem.name }}
+    </div>
+
+    <div>
+      <label><strong>Description:</strong></label>
+      {{ currentRecordItem.description }}
+    </div>
+
+    <div>
+      <label><strong>dueDate:</strong></label>
+      {{ currentRecordItem.dueDate }}
+    </div>
+
+    <div>
+      <label><strong>Mark date:</strong></label>
+      {{ currentRecordItem.markDate }}
+    </div>
+
+    <div>
+      <label><strong>Creation date:</strong></label>
+      {{ currentRecordItem.creationDate }}
+    </div>
+
+    <div>
+      <label><strong>Status:</strong></label>
+      {{ currentRecordItem.status }}
+    </div>
+    <a
+      class="badge badge-warning" style="width: 80px;"
+      routerLink="/records/{{ currentRecordItem.id }}"
+    >
+      Edit
+    </a>
+  </div>
+
+  <div *ngIf="!currentRecordItem">
+    <br />
+    <p>Please click on a Record ...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentRecordItem.id" class="edit-form">
+    <h4>Record</h4>
+    <form>
+      <div class="form-group">
+        <label for="recordNumber">Record number</label>
+        <input
+          type="text"
+          readonly
+          class="form-control"
+          id="recordNumber"
+          [(ngModel)]="currentRecordItem.id"
+          name="recordNumber"
+        />
+      </div>
+      <div class="form-group">
+        <label for="recordName">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="recordName"
+          [(ngModel)]="currentRecordItem.name"
+          name="recordName"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="recordDescr">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="recordDescr"
+          [(ngModel)]="currentRecordItem.description"
+          name="recordDescr"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="dueDate">dueDate</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          id="dueDate"
+          [(ngModel)]="currentRecordItem.dueDate"
+          name="dueDate"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status: &nbsp;&nbsp;&nbsp; </label>
+        <select id="status"
+                name="status"
+                [(ngModel)]="currentRecordItem.status">
+          <option [value]="RecordStatusEnum.DONE">Done</option>
+          <option [value]="RecordStatusEnum.NOT_DONE">Not done</option>
+        </select>
+      </div>
+
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteRecordItem()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateRecordItem()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentRecordItem.id">
+    <br />
+    <p>Cannot access this Record...</p>
+  </div>
+</ng-template>

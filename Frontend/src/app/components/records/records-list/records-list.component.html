@@ -1,0 +1,75 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by record name"
+        [(ngModel)]="recordName"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchRecordName()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <h4>Records List</h4>
+
+    <div class="table-responsive">
+      <table class="table table-sm">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>duDate</th>
+          <th>creationDate</th>
+          <th>status</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr class="list-table-item"
+        *ngFor="let record of records; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveRecord(record, i)">
+          <td>{{ record.id }}</td>
+          <td>{{ record.name }}</td>
+          <td>{{ record.description }}</td>
+          <td>{{ record.dueDate }}</td>
+          <td>{{ record.creationDate }}</td>
+          <td>{{ record.status }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllContracts()">
+      Remove All
+    </button>
+    <button class="m-3 btn btn-sm btn-success" (click)="navigateToAdd()">
+      Add
+    </button>
+
+    <button class="m-3 btn btn-sm btn-info" (click)="showAll()">
+      show all values (no filtered)
+    </button>
+
+    <button class="m-3 btn btn-sm btn-info" (click)="showNotDone()">
+      show only not done records.
+    </button>
+
+  </div>
+  <div class="col-md-6">
+    <app-record-details
+      [viewMode]="true"
+      [currentRecordItem]="currentRecordItem"
+    ></app-record-details>
+  </div>
+</div>

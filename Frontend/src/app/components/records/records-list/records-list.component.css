@@ -1,0 +1,16 @@
+tr:hover {background-color: coral;}
+
+.list {
+  text-align: left;
+  max-width: 750px;
+  margin: auto;
+}
+table, td, th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  cursor: pointer;
+}
+table TH {
+  background-color: #407da5;
+
+}

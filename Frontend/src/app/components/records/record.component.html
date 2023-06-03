@@ -1,0 +1,58 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+
+      <div class="form-group">
+        <label for="recordName">Name</label>
+        <input
+          class="form-control"
+          id="recordName"
+          required
+          [(ngModel)]="currentRecord.name"
+          name="recordName"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="recordDesc">Description</label>
+        <input
+          class="form-control"
+          id="recordDesc"
+          required
+          [(ngModel)]="currentRecord.description"
+          name="recordDesc"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="dueDate">Due date</label>
+        <input
+          class="form-control"
+          id="dueDate"
+          required
+          type="datetime-local"
+          [(ngModel)]="currentRecord.dueDate"
+          name="dueDate"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status: &nbsp;&nbsp;&nbsp; </label>
+        <select id="status"
+                name="status"
+                [(ngModel)]="currentRecord.status">
+          <option [value]="RecordStatusEnum.NOT_DONE">Not done</option>
+        </select>
+      </div>
+
+      <button (click)="saveRecord()" class="btn btn-success">Submit</button>
+      <BR>
+      <p>{{errorMessage}}</p>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Record was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="createRecord()">Add</button>
+    </div>
+  </div>
+</div>

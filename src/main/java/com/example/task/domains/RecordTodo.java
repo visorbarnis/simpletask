@@ -1,9 +1,10 @@
 package com.example.task.domains;
 
+import com.example.task.domains.enums.RecordStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "records")
@@ -25,8 +26,18 @@ public class RecordTodo {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "trigger_date")
-    private LocalDate triggerDate;
+    @Column(name = "du_date")
+    private LocalDateTime dueDate;
+
+    @Column(name = "mark_date")
+    private LocalDateTime markDate;
+
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private RecordStatus status;
 
 }
 
